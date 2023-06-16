@@ -15,20 +15,20 @@ MonoBehaviour:
   _order: 1
   _segments:
   - Order: 0
-    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
-    SegmentLenght: 1
+    Prefab: {fileID: 802521973348293592, guid: 1622277f06607fc47bc633a9b25f9507, type: 3}
+    SegmentLenght: 0
   - Order: 1
-    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
-    SegmentLenght: 2
+    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    SegmentLenght: 10
   - Order: 2
-    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
-    SegmentLenght: 1
+    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    SegmentLenght: 10
+  - Order: 3
+    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    SegmentLenght: 10
   - Order: 4
-    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
-    SegmentLenght: 2
+    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    SegmentLenght: 10
   - Order: 5
-    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
-    SegmentLenght: 1
-  - Order: 9
-    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
-    SegmentLenght: 1
+    Prefab: {fileID: 802521973348293592, guid: fb7bf27e60117be439f3a62328f0fa7b, type: 3}
+    SegmentLenght: 0
