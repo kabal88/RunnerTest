@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267b6e47d1676714ca1cd43b8ef92eb8, type: 3}
+  m_Name: RoadConfig3
+  m_EditorClassIdentifier: 
+  _order: 1
+  _segments:
+  - Order: 0
+    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
+    SegmentLenght: 1
+  - Order: 1
+    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
+    SegmentLenght: 2
+  - Order: 2
+    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
+    SegmentLenght: 1
+  - Order: 4
+    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
+    SegmentLenght: 2
+  - Order: 5
+    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
+    SegmentLenght: 1
+  - Order: 9
+    Prefab: {fileID: 802521973348293592, guid: bdbba9c2b49d61042a3e700e922ab230, type: 3}
+    SegmentLenght: 1

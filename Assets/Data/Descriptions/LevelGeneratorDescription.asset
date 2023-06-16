@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d919ac1164ea42a5b403e46cc5495e48, type: 3}
+  m_Name: LevelGeneratorDescription
+  m_EditorClassIdentifier: 
+  description:
+    _id: {fileID: 11400000, guid: d5b53974deeffe14a838abf7332ae3b9, type: 2}
+    _numberOfLevelsForRepeating: 1
+    _roadConfigs:
+    - {fileID: 11400000, guid: e5482ee8f70a67b4f941134032d476b7, type: 2}
+    - {fileID: 11400000, guid: 50024c8b69b670c45b6c76cb6d64c50a, type: 2}
+    - {fileID: 11400000, guid: f7a32bb7247aaa74a95ebd12bea2c039, type: 2}
+    - {fileID: 11400000, guid: 75b8f264abb1c2243a6fa6ededc67a0b, type: 2}
