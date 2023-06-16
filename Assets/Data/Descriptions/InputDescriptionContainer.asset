@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15a0853053145a099e2a175ad395ca2, type: 3}
+  m_Name: InputDescriptionContainer
+  m_EditorClassIdentifier: 
+  description:
+    _id: {fileID: 11400000, guid: 8e0e29a2f02ca304a93daa6a3bdc23cc, type: 2}
+    actions: {fileID: -944628639613478452, guid: 950ff08520592a64595bc4bede80686a, type: 3}
+    inputActionSettings:
+    - ActionName: Move
+      Identifier: {fileID: 11400000, guid: 3c9639047854eaf449a345bd425b2de1, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: ddb4b395-1fc4-46a9-9574-e7a7fa1a2b8d
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: Fire
+      Identifier: {fileID: 11400000, guid: 85c2c8f4211fa694888fdbb3fca566d2, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 64568960-dfd1-433f-bf41-b29a95e8e1e8
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: Point
+      Identifier: {fileID: 11400000, guid: 165d39c16d6a3124e8a9b5d1b1325ae5, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: ec1f05b3-2ba2-40b4-947f-ee884615193f
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: Navigate
+      Identifier: {fileID: 11400000, guid: 1233b1d485395fb4abae131f79124c4b, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: d8bad9fa-3bab-408d-a89f-74ff72b5ee08
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: Submit
+      Identifier: {fileID: 11400000, guid: f9c9754de5c752f499fd8568c03fa571, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 00aff9e4-3397-4c42-9163-62c2abd3f865
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: Cancel
+      Identifier: {fileID: 11400000, guid: 69fec405f6e44324cb9f1903d1101d0a, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 1ffe9d09-aac3-4469-90e1-76e8d45c3f36
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: Click
+      Identifier: {fileID: 11400000, guid: 4174862caaaf79042b39c1e58858e892, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: dad90c17-9bb8-400c-9e03-d267c58b5201
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: ScrollWheel
+      Identifier: {fileID: 11400000, guid: 10f2d12b7772b1b47a9926c934f9e3b0, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 3ee515ce-fe69-4ed0-b015-8e0121e36225
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: MiddleClick
+      Identifier: {fileID: 11400000, guid: 22dd8040160e43e4184fe3aa3884410f, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: 0a92cf50-b407-48e9-a379-0198b195a750
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: RightClick
+      Identifier: {fileID: 11400000, guid: 37b0a8ef2d2b6e347bd94dfb64723eba, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: e0dab39f-5488-4ccc-b57f-032f6eb0d729
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: TrackedDevicePosition
+      Identifier: {fileID: 11400000, guid: ce9eb27327d8ec24da0a23d3a3b729bf, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: c607d4b6-195d-4d16-8505-a5402e1a3966
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0
+    - ActionName: TrackedDeviceOrientation
+      Identifier: {fileID: 11400000, guid: 5c0f9934961be844997aef225899ce6b, type: 2}
+      InputAction:
+        m_Name: Input
+        m_Type: 0
+        m_ExpectedControlType: 
+        m_Id: f4ad1a63-05ad-43be-95ec-dd078b18105a
+        m_Processors: 
+        m_Interactions: 
+        m_SingletonActionBindings: []
+        m_Flags: 0

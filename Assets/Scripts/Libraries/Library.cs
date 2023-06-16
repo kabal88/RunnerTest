@@ -16,8 +16,10 @@ namespace Libraries
         [SerializeField] private List<Description> Descriptions = new();
         
         private Dictionary<int, IGameDescription> _gameDescriptions = new();
-        private Dictionary<int, IUnitDescription> _unitCharacteristicsDescriptions = new();
+        private Dictionary<int, IUnitDescription> _unitDescriptions = new();
         private Dictionary<int, ILevelGeneratorDescription> _levelGeneratorDescriptions = new();
+        private Dictionary<int, IInputDescription> _inputDescriptions = new();
+        private Dictionary<int, IColorPalletDescription> _colorPalletDescriptions = new();
 
 
         public void Init()
@@ -30,10 +32,16 @@ namespace Libraries
                         _gameDescriptions.Add(description.GetDescription.Id, data);
                         break;
                     case IUnitDescription data:
-                        _unitCharacteristicsDescriptions.Add(description.GetDescription.Id,data);
+                        _unitDescriptions.Add(description.GetDescription.Id,data);
                         break;
                     case ILevelGeneratorDescription data:
                         _levelGeneratorDescriptions.Add(description.GetDescription.Id,data);
+                        break;
+                    case IInputDescription data:
+                        _inputDescriptions.Add(description.GetDescription.Id,data);
+                        break;
+                    case IColorPalletDescription data:
+                        _colorPalletDescriptions.Add(description.GetDescription.Id,data);
                         break;
                 }
             }
@@ -62,7 +70,7 @@ namespace Libraries
 
         public IUnitDescription GetUnitDescription(int id)
         {
-            if (_unitCharacteristicsDescriptions.TryGetValue(id, out var needed))
+            if (_unitDescriptions.TryGetValue(id, out var needed))
             {
                 return needed;
             }
@@ -76,6 +84,24 @@ namespace Libraries
                 return needed;
             }
             throw new Exception($"LevelGenerator description with id {id} not found");
+        }
+        
+        public IInputDescription GetInputDescription(int id)
+        {
+            if (_inputDescriptions.TryGetValue(id, out var needed))
+            {
+                return needed;
+            }
+            throw new Exception($"Input description with id {id} not found");
+        }
+        
+        public IColorPalletDescription GetColorPalletDescription(int id)
+        {
+            if (_colorPalletDescriptions.TryGetValue(id, out var needed))
+            {
+                return needed;
+            }
+            throw new Exception($"ColorPallet description with id {id} not found");
         }
     }
 }

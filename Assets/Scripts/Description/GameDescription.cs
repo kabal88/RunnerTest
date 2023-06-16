@@ -14,8 +14,10 @@ namespace Descriptions
     {
         [SerializeField] private GameIdentifier _id;
         [SerializeField] private LevelGeneratorIdentifier _levelGeneratorId;
+        [SerializeField] private InputDescriptionIdentifier _inputDescriptionId;
+        [SerializeField] private ColorsPalletIdentifier _colorPalletId;
 
         public int Id => _id.Id;
-        public GameModel Model => new GameModel(_levelGeneratorId.Id);
+        public GameModel Model => new(_levelGeneratorId.Id, _colorPalletId.Id, _inputDescriptionId.Id);
     }
 }

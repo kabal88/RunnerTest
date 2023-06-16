@@ -1,5 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,46 +16,21 @@ using UnityEngine.InputSystem;
 namespace Components
 {
     [Serializable]
-    public class InputActionsDescription : IInputActionsDescription
+    public class InputDescription : IInputDescription
     {
-        
-        [SerializeField] private 
+        [SerializeField] private InputDescriptionIdentifier _id;
         [SerializeField] private InputActionAsset actions;
+
         [SerializeField, ListDrawerSettings(ShowPaging = false)]
         private List<InputActionSettings> inputActionSettings = new List<InputActionSettings>();
 
-        public int Id { get; }
-        public InputActionsModel Model { get; }
-        
-        public InputActionAsset Actions=> actions;
-        public ReadonlyList<InputActionSettings> InputActionSettings; //todo: продолжить отсюда
-
-        protected override void ConstructorCall()
-        {
-            InputActionSettings = new ReadonlyList<InputActionSettings>(inputActionSettings);
-        }
-
-        public bool TryGetInputAction(string name, out InputAction inputAction)
-        {
-            foreach (var a in actions.actionMaps)
-            {
-                foreach (var action in a.actions)
-                {
-                    if (action.name == name)
-                    {
-                        inputAction = action;
-                        return true;
-                    }
-                }
-            }
-
-            inputAction = null;
-            return false;
-        }
+        public int Id => _id.Id;
+        public InputActionsModel Model => new(actions, inputActionSettings);
 
         #region UnityEditor
+
 #if UNITY_EDITOR
-        private string savePath => "Assets/" + "/Data/" + "/BluePrints/" + "Identifiers/" + "InputIdentifiers/";
+        private string savePath => "Assets/" + "/Data/" + "Identifiers/" + "InputIdentifiers/";
 
         [Button]
         private void FillInputActions()
@@ -86,8 +62,8 @@ namespace Components
         private void CreateAndFillIdentifiers()
         {
             var inputIdentifiers = AssetDatabase.FindAssets("t:InputIdentifier")
-               .Select(x => UnityEditor.AssetDatabase.GUIDToAssetPath(x))
-               .Select(x => UnityEditor.AssetDatabase.LoadAssetAtPath<InputIdentifier>(x)).ToList();
+                .Select(x => UnityEditor.AssetDatabase.GUIDToAssetPath(x))
+                .Select(x => UnityEditor.AssetDatabase.LoadAssetAtPath<InputIdentifier>(x)).ToList();
 
             CheckFolder(savePath);
 
@@ -133,20 +109,35 @@ namespace Components
         }
 
 #endif
-        #endregion
 
-        
+        #endregion
     }
 
     [Serializable]
     public class InputActionSettings
     {
-        [ReadOnly]
-        public string ActionName;
+        [ReadOnly] public string ActionName;
 
-        [ReadOnly]
-        public InputIdentifier Identifier;
+        [ReadOnly] public InputIdentifier Identifier;
 
-        //public InputAction InputAction;
+        public InputAction InputAction;
+    }
+
+    public class ReadOnlyList<T> : IReadOnlyList<T>
+    {
+        private List<T> list;
+
+        public T this[int index] => list[index];
+
+        public int Count => list.Count;
+
+        public IEnumerator<T> GetEnumerator() => list.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => list.GetEnumerator();
+
+        public ReadOnlyList(List<T> list)
+        {
+            this.list = list;
+        }
     }
 }

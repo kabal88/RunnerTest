@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine.InputSystem;
 
 namespace Data
@@ -5,7 +6,7 @@ namespace Data
     ///<summary>
     ///Обозначает нажатие на кнопку (или что-то другое в зависимости от конфигурации InputAction
     /// </summary>
-    public struct InputStartedCommand
+    public struct InputStartedCommand : ICommand
     {
         public int Index;
         public InputAction.CallbackContext Context { get; set; }
@@ -14,7 +15,7 @@ namespace Data
     ///<summary>
     ///Обозначает отпускание кнопки (или что-то другое в зависимости от конфигурации InputAction
     /// </summary>
-    public struct InputEndedCommand
+    public struct InputEndedCommand: ICommand
     {
         public int Index;
         public InputAction.CallbackContext Context { get; set; }
@@ -23,7 +24,7 @@ namespace Data
     ///<summary>
     ///Обозначает удерживание кнопки (или что-то другое в зависимости от конфигурации InputAction
     /// </summary>
-    public struct InputCommand
+    public struct InputCommand: ICommand
     {
         public int Index;
         public InputAction.CallbackContext Context { get; set; }

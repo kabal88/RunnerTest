@@ -15,3 +15,5 @@ MonoBehaviour:
   description:
     _id: {fileID: 11400000, guid: d13f2dce7aea9cb40b31f5d4180e328b, type: 2}
     _levelGeneratorId: {fileID: 11400000, guid: d5b53974deeffe14a838abf7332ae3b9, type: 2}
+    _inputDescriptionId: {fileID: 11400000, guid: 8e0e29a2f02ca304a93daa6a3bdc23cc, type: 2}
+    _colorPalletId: {fileID: 11400000, guid: 2ef2315ff01661f47a7e637fa5e54a39, type: 2}

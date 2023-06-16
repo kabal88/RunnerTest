@@ -3,7 +3,6 @@ using Libraries;
 using Models;
 using Services;
 using System;
-using Factories;
 using Systems;
 using Views;
 
@@ -19,17 +18,22 @@ namespace Controllers
         private FixUpdateLocalService _fixUpdateLocalService;
         private SpawnService _spawnService;
         private GameUIController _gameUIController;
-        private UnitFactory _unitFactory;
         private LevelGenerator _levelGenerator;
+        private InputListenerService _inputListenerService;
+        private CameraController _cameraController;
 
 
         public bool IsAlive { get; }
 
-        public GameController(GameModel gameModel, Library library, GameUIView gameUi)
+        public GameController(GameModel gameModel,
+            Library library,
+            GameUIView gameUi,
+            CameraView cameraView)
         {
             _model = gameModel;
             _library = library;
             _gameUIController = new GameUIController(gameUi);
+            _cameraController = new CameraController(cameraView);
             _playerModel = new PlayerModel();
         }
 
@@ -37,20 +41,22 @@ namespace Controllers
         {
             InitServices();
             
-            _unitFactory = new UnitFactory(_library);
             _levelGenerator = new LevelGenerator(_library.GetLevelGeneratorDescription(_model.LevelGeneratorId).Model);
-            
+
             Start();
         }
 
         private void Start()
         {
             _levelGenerator.GenerateLevel(_playerModel.Level);
+            _updateLocalService.RegisterObject(_cameraController);
+            _inputListenerService.RegisterObject(_cameraController);
         }
 
-        
+
         private void Restart()
         {
+            _levelGenerator.GenerateLevel(_playerModel.Level);
         }
 
         public void UpdateLocal(float deltaTime)
@@ -62,7 +68,7 @@ namespace Controllers
         {
             _fixUpdateLocalService.FixedUpdateLocal();
         }
-        
+
         private void InitServices()
         {
             _updateLocalService = new UpdateLocalService();
@@ -72,6 +78,9 @@ namespace Controllers
             _spawnService = new SpawnService();
             ServiceLocator.SetService(_spawnService);
             _spawnService.Init();
+            _inputListenerService =
+                new InputListenerService(_library.GetInputDescription(_model.InputDescriptionId).Model);
+            ServiceLocator.SetService(_inputListenerService);
         }
 
         public void Dispose()

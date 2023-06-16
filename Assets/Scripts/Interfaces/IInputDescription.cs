@@ -2,7 +2,7 @@
 
 namespace Interfaces
 {
-    public interface IInputActionsDescription :IDescription
+    public interface IInputDescription :IDescription
     {
         InputActionsModel Model { get; }
     }
