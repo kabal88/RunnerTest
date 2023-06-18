@@ -3,6 +3,7 @@ using Libraries;
 using Models;
 using Services;
 using System;
+using System.Linq;
 using Systems;
 using Views;
 
@@ -21,6 +22,7 @@ namespace Controllers
         private LevelGenerator _levelGenerator;
         private InputListenerService _inputListenerService;
         private CameraController _cameraController;
+        private UnitController _unitController;
 
 
         public bool IsAlive { get; }
@@ -44,14 +46,26 @@ namespace Controllers
 
             _levelGenerator = new LevelGenerator(_library.GetLevelGeneratorDescription(_model.LevelGeneratorId).Model);
 
-            Start();
+            _levelGenerator.GenerateLevel(_playerModel.Level);
+            _updateLocalService.RegisterObject(_cameraController);
+            _inputListenerService.RegisterObject(_cameraController);
+            
+           _unitController = CreatUnit();
+           Start();
         }
 
         private void Start()
         {
-            _levelGenerator.GenerateLevel(_playerModel.Level);
-            _updateLocalService.RegisterObject(_cameraController);
-            _inputListenerService.RegisterObject(_cameraController);
+            _unitController.HandleState(_unitController.MovingState);
+        }
+
+        private UnitController CreatUnit()
+        {
+            var description = _library.GetUnitDescription(_model.UnitDescriptionId);
+            var spawnPoint = _spawnService.GetObjectsByPredicate(
+                    x => x.Data.Id == SpawnPointIdentifierMap.UnitSpawnPoint).First();
+
+            return new UnitController(description.Model, description.Prefab, spawnPoint.Parent, spawnPoint.Data);
         }
 
 

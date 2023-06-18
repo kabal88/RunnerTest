@@ -48,6 +48,26 @@ namespace Services
                 action.UpdateAction();
         }
 
+        public void RegisterObject(IInputListener obj)
+        {
+            _addListeners.Enqueue(obj);
+        }
+
+        public void UnRegisterObject(IInputListener obj)
+        {
+            _removeListeners.Enqueue(obj);
+        }
+
+        public IEnumerable<IInputListener> GetObjectsByPredicate(Func<IInputListener, bool> predicate)
+        {
+            return _listeners.Where(predicate);
+        }
+        
+        public bool TryGetInputAction(string name, out InputAction inputAction)
+        {
+            return _model.TryGetInputAction(name, out inputAction);
+        }
+
         private void LinkActions()
         {
             
@@ -86,7 +106,7 @@ namespace Services
             }
         }
 
-        public void OnActionEnd(int index, InputAction.CallbackContext context)
+        private void OnActionEnd(int index, InputAction.CallbackContext context)
         {
             var command = new InputEndedCommand { Index = index, Context = context };
 
@@ -94,21 +114,6 @@ namespace Services
             {
                 l.CommandReact(command);
             }
-        }
-
-        public void RegisterObject(IInputListener obj)
-        {
-            _addListeners.Enqueue(obj);
-        }
-
-        public void UnRegisterObject(IInputListener obj)
-        {
-            _removeListeners.Enqueue(obj);
-        }
-
-        public IEnumerable<IInputListener> GetObjectsByPredicate(Func<IInputListener, bool> predicate)
-        {
-            return _listeners.Where(predicate);
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿namespace Interfaces
+﻿using Models;
+using UnityEngine;
+
+namespace Interfaces
 {
     public interface IUnitDescription : IDescription
     {
-        float Speed { get; }
+        UnitModel Model { get; }
+        GameObject Prefab { get; }
     }
 }

@@ -14,11 +14,13 @@ namespace Descriptions
         [SerializeField] private InputDescriptionIdentifier _inputDescriptionId;
         [SerializeField] private ColorsPalletIdentifier _colorPalletId;
         [SerializeField] private CameraIdentifier _cameraId;
+        [SerializeField] private UnitIdentifier _unitId;
 
         public int Id => _id.Id;
         public GameModel Model => new(_levelGeneratorId.Id,
             _colorPalletId.Id,
             _inputDescriptionId.Id,
-            _cameraId.Id);
+            _cameraId.Id,
+            _unitId.Id);
     }
 }

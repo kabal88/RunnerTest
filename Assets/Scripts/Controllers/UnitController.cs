@@ -24,10 +24,12 @@ namespace Controllers
         public UnitView View { get; private set; }
 
 
-        public UnitController(UnitModel model, GameObject root, SpawnData spawnData)
+        public UnitController(UnitModel model, GameObject prefab ,  Transform parant, SpawnData spawnData)
         {
             Model = model;
-            View = GameObject.Instantiate(root, spawnData.Position, spawnData.Rotation).GetComponent<UnitView>();
+            View = GameObject.Instantiate(prefab, spawnData.Position, spawnData.Rotation).GetComponent<UnitView>();
+            View.transform.SetParent(parant);
+            View.Init();
 
             IdleState = new IdleState(this);
             DeadState = new DeadState(this);
@@ -38,11 +40,7 @@ namespace Controllers
 
             ServiceLocator.Get<UpdateLocalService>().RegisterObject(this);
         }
-
-        public UnitController()
-        {
-        }
-
+        
         public void SetActive(bool isOn)
         {
             Model.SetIsActive(isOn);
