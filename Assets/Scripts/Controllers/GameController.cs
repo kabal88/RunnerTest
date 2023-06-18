@@ -33,14 +33,15 @@ namespace Controllers
             _model = gameModel;
             _library = library;
             _gameUIController = new GameUIController(gameUi);
-            _cameraController = new CameraController(cameraView);
+            _cameraController = new CameraController(cameraView,
+                _library.GetCameraDescription(_model.CameraDescriptionId).Model);
             _playerModel = new PlayerModel();
         }
 
         public void Init()
         {
             InitServices();
-            
+
             _levelGenerator = new LevelGenerator(_library.GetLevelGeneratorDescription(_model.LevelGeneratorId).Model);
 
             Start();

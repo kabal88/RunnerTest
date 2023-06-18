@@ -8,6 +8,7 @@ namespace Interfaces
     {
         IdleState IdleState { get; }
         DeadState DeadState { get; }
+        MovingState MovingState { get; }
         UnitModel Model { get; }
         UnitView View { get; }
         

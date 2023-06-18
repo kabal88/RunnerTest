@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Data;
 using Identifier;
 using Interfaces;
 using Models;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Descriptions
 {
@@ -16,8 +13,12 @@ namespace Descriptions
         [SerializeField] private LevelGeneratorIdentifier _levelGeneratorId;
         [SerializeField] private InputDescriptionIdentifier _inputDescriptionId;
         [SerializeField] private ColorsPalletIdentifier _colorPalletId;
+        [SerializeField] private CameraIdentifier _cameraId;
 
         public int Id => _id.Id;
-        public GameModel Model => new(_levelGeneratorId.Id, _colorPalletId.Id, _inputDescriptionId.Id);
+        public GameModel Model => new(_levelGeneratorId.Id,
+            _colorPalletId.Id,
+            _inputDescriptionId.Id,
+            _cameraId.Id);
     }
 }

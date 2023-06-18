@@ -1,4 +1,4 @@
-using Components;
+using Descriptions;
 using UnityEngine;
 
 namespace DescriptionContainers

@@ -3,9 +3,9 @@ using Interfaces;
 
 namespace Controllers.UnitStates
 {
-    public class IdleState : UnitStateBase
+    public class MovingState : UnitStateBase
     {
-        public IdleState(IUnitContext unit) : base(unit)
+        public MovingState(IUnitContext unit) : base(unit)
         {
         }
 
@@ -13,18 +13,23 @@ namespace Controllers.UnitStates
         {
             switch (newState)
             {
-                case MovingState movingState:
-                    Unit.SetState(movingState);
+                case DeadState deadState:
+                    Unit.SetState(deadState);
+                    break;
+                case IdleState idleState:
+                    Unit.SetState(idleState);
                     break;
             }
         }
 
         public override void StartState()
         {
+            
         }
 
         public override void UpdateLocal(float deltaTime)
         {
+            
         }
     }
 }

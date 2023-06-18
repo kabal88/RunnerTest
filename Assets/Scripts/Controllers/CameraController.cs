@@ -7,21 +7,20 @@ namespace Controllers
     public class CameraController : IInputListener, IUpdatable
     {
         private CameraView _view;
-
-        private float _currentSpeed = 1;
-        private bool _canMove;
-
+        private CameraModel _model;
+        
         public bool IsAlive { get; }
 
-        public CameraController(CameraView view)
+        public CameraController(CameraView view, CameraModel model)
         {
             _view = view;
+            _model = model;
             IsAlive = true;
         }
 
         public void UpdateLocal(float deltaTime)
         {
-            if (_canMove)
+            if (_model.CanMove)
             {
                 MoveCamera(deltaTime);
             }
@@ -32,7 +31,7 @@ namespace Controllers
         {
             if (command.Index == InputIdentifierMap.Fire)
             {
-                _canMove = true;
+                _model.SetCanMove(true);
             }
         }
 
@@ -46,10 +45,15 @@ namespace Controllers
 
         private void MoveCamera(float deltaTime)
         {
-            var currentSpeed = _currentSpeed * deltaTime;
+            var currentSpeed = _model.Speed * deltaTime;
             
             var transform = _view.transform;
             transform.Translate(Vector3.forward * currentSpeed);
+        }
+
+        public void ResetCameraPosition()
+        {
+            _view.transform.position = _model.StartPosition;
         }
     }
 }

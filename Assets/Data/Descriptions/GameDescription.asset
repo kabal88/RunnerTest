@@ -17,3 +17,4 @@ MonoBehaviour:
     _levelGeneratorId: {fileID: 11400000, guid: d5b53974deeffe14a838abf7332ae3b9, type: 2}
     _inputDescriptionId: {fileID: 11400000, guid: 8e0e29a2f02ca304a93daa6a3bdc23cc, type: 2}
     _colorPalletId: {fileID: 11400000, guid: 2ef2315ff01661f47a7e637fa5e54a39, type: 2}
+    _cameraId: {fileID: 11400000, guid: 0b4bb2899857b654ba8d2b2a7e0d3c30, type: 2}
