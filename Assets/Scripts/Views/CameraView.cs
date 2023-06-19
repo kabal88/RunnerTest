@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class CameraView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Camera Camera { get; private set; }
+    public UnitHolderMonoComponent UnitHolder { get; private set; }
+    
+    public void Init()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Camera = GetComponentInChildren<Camera>();
+        UnitHolder = GetComponentInChildren<UnitHolderMonoComponent>();
     }
 }

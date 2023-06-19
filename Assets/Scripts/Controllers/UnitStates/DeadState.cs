@@ -14,6 +14,7 @@ namespace Controllers.UnitStates
 
         public override void StartState()
         {
+            Unit.Model.SetIsAlive(false);
             Unit.OnDead();
         }
 

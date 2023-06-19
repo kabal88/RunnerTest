@@ -3,6 +3,7 @@ using Controllers;
 using Identifier;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Description
 {
@@ -10,9 +11,17 @@ namespace Description
     public class CameraDescription : ICameraDescription
     {
         [SerializeField] private CameraIdentifier _id;
-        [SerializeField] private float _speed;
+
+        [FormerlySerializedAs("_speed")] [SerializeField] private float _forwardSpeed;
+        [SerializeField] private float _leftBorder;
+        [SerializeField] private float _rightBorder;
+        [SerializeField] private float _sideSpeed;
 
         public int Id => _id.Id;
-        public CameraModel Model => new(_speed);
+
+        public CameraModel Model => new(_forwardSpeed,
+            _leftBorder,
+            _rightBorder,
+            _sideSpeed);
     }
 }

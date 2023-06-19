@@ -9,24 +9,28 @@ using Views;
 
 namespace Controllers
 {
-    public class UnitController : IUpdatable, IActivatable, IUnitContext, IDisposable
+    public class UnitController : IUpdatable, IActivatable, IUnitContext, IDisposable, ITarget
     {
         public event Action Dead;
 
         private UnitStateBase _currentState;
 
         public bool IsAlive => Model.IsAlive;
-        public Vector3 Position => Model.Position;
+        public int CurrentNumber => Model.CurrentNumber;
         public IdleState IdleState { get; private set; }
         public DeadState DeadState { get; private set; }
         public MovingState MovingState { get; private set; }
         public UnitModel Model { get; private set; }
         public UnitView View { get; private set; }
+        
+        public ITarget Target => this;
+
 
 
         public UnitController(UnitModel model, GameObject prefab ,  Transform parant, SpawnData spawnData)
         {
             Model = model;
+            
             View = GameObject.Instantiate(prefab, spawnData.Position, spawnData.Rotation).GetComponent<UnitView>();
             View.transform.SetParent(parant);
             View.Init();
@@ -34,8 +38,7 @@ namespace Controllers
             IdleState = new IdleState(this);
             DeadState = new DeadState(this);
             MovingState = new MovingState(this);
-
-            Model.SetPosition(View.Position);
+            
             SetState(IdleState);
 
             ServiceLocator.Get<UpdateLocalService>().RegisterObject(this);
@@ -51,7 +54,6 @@ namespace Controllers
         {
             if (Model.IsActive)
             {
-                Model.SetPosition(View.Position);
                 _currentState.UpdateLocal(deltaTime);
             }
         }
@@ -81,6 +83,9 @@ namespace Controllers
 
             DeadState.Dispose();
             DeadState = null;
+            
+            MovingState.Dispose();
+            MovingState = null;
 
             _currentState.Dispose();
             _currentState = null;
@@ -89,6 +94,17 @@ namespace Controllers
 
             GameObject.Destroy(View.gameObject);
             View = null;
+        }
+
+        public void AddToCurrentNumber(int value)
+        {
+            Model.AddToCurrentNumber(value);
+            View.SetNumber(Model.CurrentNumber);
+        }
+
+        public void Die()
+        {
+            HandleState(DeadState);
         }
     }
 }

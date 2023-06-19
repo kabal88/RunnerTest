@@ -4,14 +4,21 @@ namespace Controllers
 {
     public class CameraModel
     {
-        public float Speed { get; private set; }
+        public float ForwardSpeed { get; private set; }
         public bool CanMove{ get; private set; }
-        
         public Vector3 StartPosition { get; private set; }
+        
+        public Vector3 UnitHolderLocalPosition { get; private set; }
+        public float LeftBorder { get; private set; }
+        public float RightBorder { get; private set; }
+        public float SideSpeed { get; private set; }
 
-        public CameraModel(float speed)
+        public CameraModel(float forwardSpeed, float leftBorder, float rightBorder, float sideSpeed)
         {
-            Speed = speed;
+            ForwardSpeed = forwardSpeed;
+            LeftBorder = leftBorder;
+            RightBorder = rightBorder;
+            SideSpeed = sideSpeed;
         }
 
         public void SetCanMove(bool value)
@@ -22,6 +29,11 @@ namespace Controllers
         public void SetStartPosition(Vector3 value)
         {
             StartPosition = value;
+        }
+        
+        public void SetUnitHolderLocalPosition(Vector3 value)
+        {
+            UnitHolderLocalPosition = value;
         }
     }
 }

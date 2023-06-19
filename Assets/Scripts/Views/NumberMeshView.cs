@@ -9,9 +9,11 @@ public class NumberMeshView : MonoBehaviour
     
     public void SetNumber(int number)
     {
-        for (int i = 0; i < _textMeshes.Length; i++)
+        var numberString = number.ToString();
+        
+        for (var i = 0; i < _textMeshes.Length; i++)
         {
-            _textMeshes[i].text = number.ToString();
+            _textMeshes[i].text = numberString;
         }
     }
 

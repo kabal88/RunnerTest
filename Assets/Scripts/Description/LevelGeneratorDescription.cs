@@ -14,13 +14,16 @@ namespace Descriptions
     {
         [SerializeField] private LevelGeneratorIdentifier _id;
         [SerializeField] private int _numberOfLevelsForRepeating = 3;
+        [SerializeField] private GameObject _prefab;
         [SerializeField] private RoadConfig[] _roadConfigs;
         
         public int Id => _id.Id;
 
         public LevelGeneratorModel Model => new(_numberOfLevelsForRepeating, _roadConfigs);
 
-        
+        public GameObject Prefab => _prefab;
+
+
 #if UNITY_EDITOR
         [Button(SdfIconType.Stack, IconAlignment.LeftOfText)]
         public void SortByOrder()

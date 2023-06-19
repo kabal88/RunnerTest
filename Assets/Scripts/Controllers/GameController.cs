@@ -32,6 +32,7 @@ namespace Controllers
             GameUIView gameUi,
             CameraView cameraView)
         {
+            IsAlive = true;
             _model = gameModel;
             _library = library;
             _gameUIController = new GameUIController(gameUi);
@@ -44,14 +45,17 @@ namespace Controllers
         {
             InitServices();
 
-            _levelGenerator = new LevelGenerator(_library.GetLevelGeneratorDescription(_model.LevelGeneratorId).Model);
-
+            var levelGeneratorDescription = _library.GetLevelGeneratorDescription(_model.LevelGeneratorId);
+            _levelGenerator = new LevelGenerator(levelGeneratorDescription.Model, levelGeneratorDescription.Prefab);
             _levelGenerator.GenerateLevel(_playerModel.Level);
+
+            _unitController = CreateUnit();
+            _cameraController.Init();
+
             _updateLocalService.RegisterObject(_cameraController);
             _inputListenerService.RegisterObject(_cameraController);
-            
-           _unitController = CreatUnit();
-           Start();
+
+            Start();
         }
 
         private void Start()
@@ -59,11 +63,11 @@ namespace Controllers
             _unitController.HandleState(_unitController.MovingState);
         }
 
-        private UnitController CreatUnit()
+        private UnitController CreateUnit()
         {
             var description = _library.GetUnitDescription(_model.UnitDescriptionId);
             var spawnPoint = _spawnService.GetObjectsByPredicate(
-                    x => x.Data.Id == SpawnPointIdentifierMap.UnitSpawnPoint).First();
+                x => x.Data.Id == SpawnPointIdentifierMap.UnitSpawnPoint).First();
 
             return new UnitController(description.Model, description.Prefab, spawnPoint.Parent, spawnPoint.Data);
         }

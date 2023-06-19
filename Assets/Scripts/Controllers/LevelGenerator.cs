@@ -3,15 +3,18 @@ using Models;
 using Services;
 using Systems;
 using UnityEngine;
+using Views;
 
 namespace Controllers
 {
     public class LevelGenerator
     {
         private LevelGeneratorModel _model;
+        private LevelHolder _holder;
 
-        public LevelGenerator(LevelGeneratorModel model)
+        public LevelGenerator(LevelGeneratorModel model, GameObject prefab)
         {
+            _holder = MonoBehaviour.Instantiate(prefab).GetComponent<LevelHolder>();
             _model = model;
         }
 
@@ -45,7 +48,9 @@ namespace Controllers
                 var pos = new Vector3(0, 0, (roadLength));
                 pos += spawnPoint.Position;
                 
-                _model.CurrentSegments.Add(MonoBehaviour.Instantiate(segments[i].Prefab, pos, spawnPoint.Rotation));
+                var segment = MonoBehaviour.Instantiate(segments[i].Prefab, pos, spawnPoint.Rotation);
+                segment.transform.SetParent(_holder.transform);
+                _model.CurrentSegments.Add(segment);
                 
                 roadLength += segments[i].SegmentLenght;
             }

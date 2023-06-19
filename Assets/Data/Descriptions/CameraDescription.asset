@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description:
     _id: {fileID: 11400000, guid: 0b4bb2899857b654ba8d2b2a7e0d3c30, type: 2}
-    _speed: 5
+    _forwardSpeed: 5
+    _leftBorder: -4
+    _rightBorder: 4
+    _sideSpeed: 60

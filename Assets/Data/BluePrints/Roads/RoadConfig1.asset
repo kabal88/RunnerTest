@@ -21,7 +21,7 @@ MonoBehaviour:
     Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
     SegmentLenght: 10
   - Order: 2
-    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    Prefab: {fileID: 802521973348293592, guid: eeda689160c2bb34987f3ac108aaf6d5, type: 3}
     SegmentLenght: 10
   - Order: 3
     Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}

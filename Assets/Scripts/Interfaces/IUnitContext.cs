@@ -11,7 +11,8 @@ namespace Interfaces
         MovingState MovingState { get; }
         UnitModel Model { get; }
         UnitView View { get; }
-        
+        ITarget Target { get; }
+
         /// <summary>
         /// Method for import state directly.
         /// </summary>

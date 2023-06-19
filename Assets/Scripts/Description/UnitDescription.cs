@@ -12,9 +12,6 @@ namespace Descriptions
     {
         [SerializeField] private UnitIdentifier _id;
         [SerializeField] private int _startNumber;
-        [SerializeField] private float _speed;
-        [SerializeField] private float _leftBorder;
-        [SerializeField] private float _rightBorder;
         [SerializeField, AssetsOnly] private GameObject _prefab;
 
 
@@ -23,9 +20,6 @@ namespace Descriptions
 
 
         public UnitModel Model => new(
-            _startNumber,
-            _leftBorder,
-            _rightBorder,
-            _speed);
+            _startNumber);
     }
 }

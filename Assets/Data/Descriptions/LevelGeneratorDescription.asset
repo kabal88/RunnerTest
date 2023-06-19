@@ -15,6 +15,7 @@ MonoBehaviour:
   description:
     _id: {fileID: 11400000, guid: d5b53974deeffe14a838abf7332ae3b9, type: 2}
     _numberOfLevelsForRepeating: 1
+    _prefab: {fileID: 1586382396422859094, guid: 029d184e5f3471a4b99583c1f80cb05f, type: 3}
     _roadConfigs:
     - {fileID: 11400000, guid: e5482ee8f70a67b4f941134032d476b7, type: 2}
     - {fileID: 11400000, guid: 50024c8b69b670c45b6c76cb6d64c50a, type: 2}
