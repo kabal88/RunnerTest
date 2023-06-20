@@ -52,6 +52,20 @@ MonoBehaviour:
     Ease: 6
     Target: 1
     StartScale: 2
+  _fallingMoveParams:
+    Duration: 0.5
+    Delay: 0
+    Ease: 8
+    Target: {x: 0, y: 4, z: 0}
+    LoopType: 0
+  _deadParams:
+    Duration: 0.5
+    Delay: 0
+    Ease: 30
+    EndValue: {x: 0, y: 0, z: -0.7}
+    JumpPower: 1
+    NumJumps: 1
+    Snapping: 0
 --- !u!1 &934386249752037351
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,18 @@ namespace Controllers.UnitStates
                     EndState();
                     Unit.SetState(idleState);
                     break;
+                case CrossFinishLineState crossFinishLineState:
+                    EndState();
+                    Unit.SetState(crossFinishLineState);
+                    break;
+                case JumpState jumpState:
+                    EndState();
+                    Unit.SetState(jumpState);
+                    break;
+                case FallingState fallingState:
+                    EndState();
+                    Unit.SetState(fallingState);
+                    break;
             }
         }
 

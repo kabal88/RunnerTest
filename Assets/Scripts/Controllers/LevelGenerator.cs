@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Models;
 using Services;
 using Systems;
@@ -9,8 +11,12 @@ namespace Controllers
 {
     public class LevelGenerator
     {
+        public event Action LevelGenerationFinished;
+        
         private LevelGeneratorModel _model;
         private LevelHolder _holder;
+
+        public IEnumerable<RoadSegmentHolder> RoadSegmentHolders => _model.RoadSegmentHolders;
 
         public LevelGenerator(LevelGeneratorModel model, GameObject prefab)
         {
@@ -24,6 +30,7 @@ namespace Controllers
 
             var config = _model.GetLevelConfig(index);
             GenerateRoad(config);
+            LevelGenerationFinished?.Invoke();
         }
 
 
@@ -33,6 +40,7 @@ namespace Controllers
                 MonoBehaviour.Destroy(r);
             
             _model.CurrentSegments.Clear();
+            _model.RoadSegmentHolders.Clear();
         }
 
         private void GenerateRoad(RoadConfig config)
@@ -50,6 +58,11 @@ namespace Controllers
                 
                 var segment = MonoBehaviour.Instantiate(segments[i].Prefab, pos, spawnPoint.Rotation);
                 segment.transform.SetParent(_holder.transform);
+
+                if (segment.TryGetComponent(out RoadSegmentHolder holder))
+                {
+                    _model.RoadSegmentHolders.Add(holder);
+                }
                 _model.CurrentSegments.Add(segment);
                 
                 roadLength += segments[i].SegmentLenght;

@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
+using Views;
 
 namespace Models
 {
     public class LevelGeneratorModel
     {
         public List<GameObject> CurrentSegments = new();
+        public List<RoadSegmentHolder> RoadSegmentHolders = new();
         
-        private int _numberOfLevelsForRepeating = 3;
+        private int _numberOfLevelsForRepeating;
         private RoadConfig[] _roadConfigs;
-        private Dictionary<int, RoadConfig> configs ;
+        private Dictionary<int, RoadConfig> _configs ;
 
 
         public LevelGeneratorModel(int numberOfLevelsForRepeating, RoadConfig[] roadConfigs)
@@ -17,18 +20,18 @@ namespace Models
             _numberOfLevelsForRepeating = numberOfLevelsForRepeating;
             _roadConfigs = roadConfigs;
             
-            configs = new ();
+            _configs = new ();
             
             for (int i = 0; i < roadConfigs.Length; i++)
             {
                 RoadConfig c = roadConfigs[i];
-                configs.Add(i, c);
+                _configs.Add(i, c);
             }
         }
 
         public RoadConfig GetLevelConfig(int index)
         {
-            if (configs.TryGetValue(index, out var roadConfig))
+            if (_configs.TryGetValue(index, out var roadConfig))
             {
                 return roadConfig;
             }

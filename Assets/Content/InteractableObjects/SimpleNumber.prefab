@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ability: {fileID: 11400000, guid: 0903fed901aedda4db5a08fcf3844ab3, type: 2}
-  _currentNumber: 2
+  _currentNumber: 1
 --- !u!135 &5174199166226956808
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -72,21 +72,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: NumberMesh
       objectReference: {fileID: 0}
-    - target: {fileID: 2470533696296377102, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3967596478798479218, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
-      propertyPath: m_text
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7514613266508143004, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7514613266508143005, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
       propertyPath: m_text
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7704551963061048985, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
       propertyPath: m_RootOrder
@@ -131,14 +119,6 @@ PrefabInstance:
     - target: {fileID: 7704551963061048985, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7754476611911811542, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7765691239842500443, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}
-      propertyPath: m_text
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66a27f51bf75ef84b8cfaa92cf41befd, type: 3}

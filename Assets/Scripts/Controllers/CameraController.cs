@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Controllers
 {
-    public class CameraController : IInputListener, IUpdatable
+    public class CameraController : IInputListener, IUpdatable, IActivatable
     {
         private CameraView _view;
         private CameraModel _model;
@@ -16,6 +16,7 @@ namespace Controllers
         private Vector3 _startUnitPos;
         
         private InputAction _positionUpdateAction;
+        private bool _isActive;
         
         public bool IsAlive { get; }
         public Camera Camera => _view.Camera;
@@ -37,6 +38,9 @@ namespace Controllers
 
         public void UpdateLocal(float deltaTime)
         {
+            if (!_isActive)
+                return;
+            
             if (_model.CanMove)
             {
                 MoveCamera(deltaTime);
@@ -46,6 +50,9 @@ namespace Controllers
 
         public void CommandReact(InputStartedCommand command)
         {
+            if (!_isActive)
+                return;
+            
             if (command.Index == InputIdentifierMap.Fire)
             {
                 if (!_model.CanMove)
@@ -63,6 +70,9 @@ namespace Controllers
 
         public void CommandReact(InputCommand command)
         {
+            if (!_isActive)
+                return;
+            
             if (command.Index != InputIdentifierMap.Fire || !_model.CanMove)
                 return;
 
@@ -91,14 +101,18 @@ namespace Controllers
         private void MoveCamera(float deltaTime)
         {
             var currentSpeed = _model.ForwardSpeed * deltaTime;
-            
             var transform = _view.transform;
             transform.Translate(Vector3.forward * currentSpeed);
         }
-
+        
         public void ResetCameraPosition()
         {
             _view.transform.position = _model.StartPosition;
+        }
+
+        public void SetActive(bool isOn)
+        {
+            _isActive = isOn;
         }
     }
 }

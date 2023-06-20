@@ -12,6 +12,8 @@ namespace Controllers
     public class UnitController : IUpdatable, IActivatable, IUnitContext, IDisposable, ITarget
     {
         public event Action Dead;
+        public event Action CrossFinishLine;
+        public event Action<int> NumberChanged; 
 
         private UnitStateBase _currentState;
 
@@ -20,6 +22,9 @@ namespace Controllers
         public IdleState IdleState { get; private set; }
         public DeadState DeadState { get; private set; }
         public MovingState MovingState { get; private set; }
+        public CrossFinishLineState CrossFinishLineState { get; private set; }
+        public JumpState JumpState { get; private set;}
+        public FallingState FallingState { get; private set;}
         public UnitModel Model { get; private set; }
         public UnitView View { get; private set; }
         
@@ -38,10 +43,20 @@ namespace Controllers
             IdleState = new IdleState(this);
             DeadState = new DeadState(this);
             MovingState = new MovingState(this);
+            CrossFinishLineState = new CrossFinishLineState(this);
+            JumpState = new JumpState(this);
+            FallingState = new FallingState(this);
             
             SetState(IdleState);
 
             ServiceLocator.Get<UpdateLocalService>().RegisterObject(this);
+        }
+        
+        public void SetNumber(int value)
+        {
+            Model.SetCurrentNumber(value);
+            View.SetNumber(Model.CurrentNumber);
+            NumberChanged?.Invoke(Model.CurrentNumber);
         }
         
         public void SetActive(bool isOn)
@@ -73,6 +88,23 @@ namespace Controllers
         {
             Dead?.Invoke();
         }
+        
+        public void OnCrossFinishLine()
+        {
+            CrossFinishLine?.Invoke();
+        }
+
+        public void AddToCurrentNumber(int value)
+        {
+            Model.AddToCurrentNumber(value);
+            View.SetNumber(Model.CurrentNumber);
+            NumberChanged?.Invoke(Model.CurrentNumber);
+        }
+
+        public void Die()
+        {
+            HandleState(DeadState);
+        }
 
         public void Dispose()
         {
@@ -86,6 +118,15 @@ namespace Controllers
             
             MovingState.Dispose();
             MovingState = null;
+            
+            CrossFinishLineState.Dispose();
+            CrossFinishLineState = null;
+            
+            JumpState.Dispose();
+            JumpState = null;
+            
+            FallingState.Dispose();
+            FallingState = null;
 
             _currentState.Dispose();
             _currentState = null;
@@ -94,17 +135,6 @@ namespace Controllers
 
             GameObject.Destroy(View.gameObject);
             View = null;
-        }
-
-        public void AddToCurrentNumber(int value)
-        {
-            Model.AddToCurrentNumber(value);
-            View.SetNumber(Model.CurrentNumber);
-        }
-
-        public void Die()
-        {
-            HandleState(DeadState);
         }
     }
 }

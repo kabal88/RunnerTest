@@ -3,6 +3,7 @@ using Libraries;
 using Models;
 using Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Systems;
 using Views;
@@ -23,6 +24,7 @@ namespace Controllers
         private InputListenerService _inputListenerService;
         private CameraController _cameraController;
         private UnitController _unitController;
+        private NumbersColorController _numbersColorController;
 
 
         public bool IsAlive { get; }
@@ -47,9 +49,12 @@ namespace Controllers
 
             var levelGeneratorDescription = _library.GetLevelGeneratorDescription(_model.LevelGeneratorId);
             _levelGenerator = new LevelGenerator(levelGeneratorDescription.Model, levelGeneratorDescription.Prefab);
+            _levelGenerator.LevelGenerationFinished += OnLevelGenerationFinished;
+            _numbersColorController =
+                new NumbersColorController(_library.GetColorPalletDescription(_model.ColorPalletId).Model);
+            _unitController = CreateUnit();
             _levelGenerator.GenerateLevel(_playerModel.Level);
 
-            _unitController = CreateUnit();
             _cameraController.Init();
 
             _updateLocalService.RegisterObject(_cameraController);
@@ -61,6 +66,23 @@ namespace Controllers
         private void Start()
         {
             _unitController.HandleState(_unitController.MovingState);
+            _cameraController.SetActive(true);
+        }
+
+        private void OnLevelGenerationFinished()
+        {
+            var colorNumbers = new List<IColorableNumber>();
+
+            foreach (var r in _levelGenerator.RoadSegmentHolders)
+            {
+                foreach (var number in r.ColorableNumbers)
+                {
+                    colorNumbers.Add(number);
+                }
+            }
+
+            _numbersColorController.Init(colorNumbers, _unitController.CurrentNumber);
+            _unitController.NumberChanged += _numbersColorController.ColorNumbers;
         }
 
         private UnitController CreateUnit()
@@ -68,8 +90,24 @@ namespace Controllers
             var description = _library.GetUnitDescription(_model.UnitDescriptionId);
             var spawnPoint = _spawnService.GetObjectsByPredicate(
                 x => x.Data.Id == SpawnPointIdentifierMap.UnitSpawnPoint).First();
+            var controller =
+                new UnitController(description.Model, description.Prefab, spawnPoint.Parent, spawnPoint.Data);
+            controller.SetNumber(_playerModel.StartNumber);
+            controller.Dead += OnLose;
+            controller.CrossFinishLine += OnWin;
+            return controller;
+        }
 
-            return new UnitController(description.Model, description.Prefab, spawnPoint.Parent, spawnPoint.Data);
+        private void OnLose()
+        {
+            _cameraController.SetActive(false);
+        }
+
+        private void OnWin()
+        {
+            _cameraController.SetActive(false);
+            _playerModel.SetLevel(_playerModel.Level + 1);
+            
         }
 
 

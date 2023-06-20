@@ -38,7 +38,7 @@ namespace UI
 
         private void OnDestroy()
         {
-            _sequence.Kill();
+            _sequence?.Kill();
         }
     }
 }

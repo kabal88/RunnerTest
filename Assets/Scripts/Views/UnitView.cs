@@ -10,6 +10,9 @@ namespace Views
     public class UnitView : MonoBehaviour
     {
         [SerializeField] private ScaleParams _collectScaleParams;
+        [SerializeField] private MoveParams _fallingMoveParams;
+        [SerializeField] private JumpParams _deadParams;
+
 
         private NumberMeshView _numberMeshView;
         private CollisionProvider _collisionProvider;
@@ -37,6 +40,25 @@ namespace Views
             _tween?.Kill();
             _tween = _numberMeshView.transform.DOScale(_collectScaleParams.Target, _collectScaleParams.Duration)
                 .SetEase(_collectScaleParams.Ease);
+        }
+
+        public void PlayFallingAnimation(Action onComplete = null)
+        {
+            _tween?.Kill();
+            var target = transform.localPosition - _fallingMoveParams.Target;
+            _tween = transform.DOLocalMove(target, _fallingMoveParams.Duration)
+                .SetEase(_fallingMoveParams.Ease)
+                .OnComplete(() => { onComplete?.Invoke(); });
+        }
+
+        public void PlayDeadAnimation(Action onComplete = null)
+        {
+            _tween?.Kill();
+            var target = transform.localPosition + _deadParams.EndValue;
+            _tween = transform.DOLocalJump(target, _deadParams.JumpPower, _deadParams.NumJumps, _deadParams.Duration,
+                    _deadParams.Snapping)
+                .SetEase(_deadParams.Ease)
+                .OnComplete(() => { onComplete?.Invoke(); });
         }
 
         private void OnDestroy()

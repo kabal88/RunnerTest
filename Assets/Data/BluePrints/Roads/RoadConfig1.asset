@@ -24,11 +24,14 @@ MonoBehaviour:
     Prefab: {fileID: 802521973348293592, guid: eeda689160c2bb34987f3ac108aaf6d5, type: 3}
     SegmentLenght: 10
   - Order: 3
-    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    Prefab: {fileID: 802521973348293592, guid: b9a65f9212e7f70479ebec57d509efbc, type: 3}
     SegmentLenght: 10
   - Order: 4
-    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    Prefab: {fileID: 802521973348293592, guid: 6120c676a87a42c44b80192cf2c4cb3a, type: 3}
     SegmentLenght: 10
   - Order: 5
+    Prefab: {fileID: 802521973348293592, guid: 310bd7b8da268fc4a98d9a9d741d1414, type: 3}
+    SegmentLenght: 10
+  - Order: 6
     Prefab: {fileID: 802521973348293592, guid: fb7bf27e60117be439f3a62328f0fa7b, type: 3}
     SegmentLenght: 0

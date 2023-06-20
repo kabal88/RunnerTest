@@ -9,6 +9,9 @@ namespace Interfaces
         IdleState IdleState { get; }
         DeadState DeadState { get; }
         MovingState MovingState { get; }
+        CrossFinishLineState CrossFinishLineState { get; }
+        JumpState JumpState { get; }
+        FallingState FallingState { get; }
         UnitModel Model { get; }
         UnitView View { get; }
         ITarget Target { get; }
@@ -26,5 +29,6 @@ namespace Interfaces
         void HandleState(UnitStateBase newState);
 
         void OnDead();
+        void OnCrossFinishLine();
     }
 }

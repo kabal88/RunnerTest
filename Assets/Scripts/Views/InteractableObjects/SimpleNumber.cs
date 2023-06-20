@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Views
 {
-    public class SimpleNumber : SimpleInteractableObject, IOwner
+    public class SimpleNumber : SimpleInteractableObject, IOwner, IColorableNumber
     {
         [SerializeField] private int _currentNumber;
         private NumberMeshView _numberMeshView;
