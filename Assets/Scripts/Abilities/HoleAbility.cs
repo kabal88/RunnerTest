@@ -1,7 +1,9 @@
-﻿using Interfaces;
+﻿using System;
+using Interfaces;
 
 namespace Abilities
 {
+    [Serializable]
     public class HoleAbility :IAbility
     {
         public void Execute(IOwner owner = null, ITarget target = null)

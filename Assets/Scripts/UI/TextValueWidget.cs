@@ -2,7 +2,7 @@
 
 namespace UI
 {
-    public class TextValueWidget :TextWidgetBase
+    public class TextValueWidget : TextWidgetBase
     {
         public TextMeshProUGUI TextMesh => Text;
     }

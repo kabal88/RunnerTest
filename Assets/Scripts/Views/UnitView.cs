@@ -16,6 +16,7 @@ namespace Views
 
         private NumberMeshView _numberMeshView;
         private CollisionProvider _collisionProvider;
+        private TrailHolder _trailHolder;
         private Tween _tween;
 
         public Vector3 Position => transform.position;
@@ -26,6 +27,7 @@ namespace Views
         {
             _numberMeshView = GetComponentInChildren<NumberMeshView>();
             _collisionProvider = GetComponentInChildren<CollisionProvider>();
+            _trailHolder = GetComponentInChildren<TrailHolder>();
         }
 
         public void SetNumber(int value)
@@ -59,6 +61,11 @@ namespace Views
                     _deadParams.Snapping)
                 .SetEase(_deadParams.Ease)
                 .OnComplete(() => { onComplete?.Invoke(); });
+        }
+
+        public void SetTrailActive(bool value)
+        {
+            _trailHolder.SetTrailActive(value);
         }
 
         private void OnDestroy()

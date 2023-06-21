@@ -12,23 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 267b6e47d1676714ca1cd43b8ef92eb8, type: 3}
   m_Name: RoadConfig3
   m_EditorClassIdentifier: 
-  _order: 1
+  _order: 3
   _segments:
   - Order: 0
     Prefab: {fileID: 802521973348293592, guid: 1622277f06607fc47bc633a9b25f9507, type: 3}
-    SegmentLenght: 0
+    Lenght: 0
+  - Order: 0.1
+    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
+    Lenght: 10
   - Order: 1
-    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
-    SegmentLenght: 10
+    Prefab: {fileID: 802521973348293592, guid: 2a86bcf0cfa5e054f98b0628ff40a5c9, type: 3}
+    Lenght: 20
   - Order: 2
-    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
-    SegmentLenght: 10
+    Prefab: {fileID: 802521973348293592, guid: e5bc8dcd044e8ec4fa8b00de51cbabb0, type: 3}
+    Lenght: 4
   - Order: 3
-    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
-    SegmentLenght: 10
+    Prefab: {fileID: 802521973348293592, guid: 9baeb50184706ca4f8b0fcc401118170, type: 3}
+    Lenght: 12
   - Order: 4
-    Prefab: {fileID: 802521973348293592, guid: 3d1989bed20c46447b839881a986aaab, type: 3}
-    SegmentLenght: 10
+    Prefab: {fileID: 802521973348293592, guid: 342cc2eff20bbfe4aa012ff76190dd4e, type: 3}
+    Lenght: 5
   - Order: 5
+    Prefab: {fileID: 802521973348293592, guid: df15a56267ffb044f860552aef028d99, type: 3}
+    Lenght: 10
+  - Order: 6
+    Prefab: {fileID: 802521973348293592, guid: 999d01fcc7c12eb4fb9d69bc6d37b286, type: 3}
+    Lenght: 15
+  - Order: 8
     Prefab: {fileID: 802521973348293592, guid: fb7bf27e60117be439f3a62328f0fa7b, type: 3}
-    SegmentLenght: 0
+    Lenght: 0

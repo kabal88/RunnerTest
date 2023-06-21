@@ -7,6 +7,8 @@ namespace Models
         public bool IsAlive { get; private set; }
         public bool IsActive { get; private set; }
         public int CurrentNumber { get; private set; }
+        
+        public Vector3 StartLocalPosition { get; private set; }
 
         public UnitModel(int currentNumber, bool isAlive = true, bool isActive = true)
         {
@@ -33,6 +35,11 @@ namespace Models
         public void SetIsAlive(bool isOn)
         {
             IsAlive = isOn;
+        }
+        
+        public void SetStartLocalPosition(Vector3 value)
+        {
+            StartLocalPosition = value;
         }
     }
 }

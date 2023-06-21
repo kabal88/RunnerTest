@@ -11,13 +11,11 @@ namespace Abilities
             if (owner == null || target == null)
                 return;
 
-            if (owner.CurrentNumber <= target.CurrentNumber)
+
+            target.AddToCurrentNumber(owner.CurrentNumber);
+            if (target.CurrentNumber > 0)
             {
                 owner.Die();
-            }
-            else
-            {
-                target.Die();
             }
         }
     }

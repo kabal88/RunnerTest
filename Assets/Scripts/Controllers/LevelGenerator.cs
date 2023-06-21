@@ -65,7 +65,7 @@ namespace Controllers
                 }
                 _model.CurrentSegments.Add(segment);
                 
-                roadLength += segments[i].SegmentLenght;
+                roadLength += segments[i].Lenght;
             }
         }
     }

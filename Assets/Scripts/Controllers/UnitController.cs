@@ -39,6 +39,8 @@ namespace Controllers
             View = GameObject.Instantiate(prefab, spawnData.Position, spawnData.Rotation).GetComponent<UnitView>();
             View.transform.SetParent(parant);
             View.Init();
+            
+            Model.SetStartLocalPosition(View.transform.localPosition);
 
             IdleState = new IdleState(this);
             DeadState = new DeadState(this);
@@ -104,6 +106,15 @@ namespace Controllers
         public void Die()
         {
             HandleState(DeadState);
+        }
+
+        public void Reset()
+        {
+            SetState(IdleState);
+            Model.SetIsActive(true);
+            Model.SetIsAlive(true);
+            var transform = View.transform;
+            transform.localPosition = Model.StartLocalPosition;
         }
 
         public void Dispose()

@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 
 namespace UI.Windows
 {
@@ -15,6 +14,7 @@ namespace UI.Windows
         private void Awake()
         {
             _restartButton = GetComponentInChildren<RestartButton>();
+            _restartButton.Init();
         }
 
         public override void Show()

@@ -31,7 +31,9 @@ namespace Controllers
         public void Init()
         {
             _view.Init();
+            _model.SetStartUnitHolderLocalPosition(_view.UnitHolder.transform.localPosition);
             _model.SetUnitHolderLocalPosition(_view.UnitHolder.transform.localPosition);
+            _model.SetStartPosition(_view.transform.position);
             var input = ServiceLocator.Get<InputListenerService>();
             input.TryGetInputAction(IdentifierToStringMap.Point, out _positionUpdateAction);
         }
@@ -105,9 +107,12 @@ namespace Controllers
             transform.Translate(Vector3.forward * currentSpeed);
         }
         
-        public void ResetCameraPosition()
+        public void ResetCamera()
         {
             _view.transform.position = _model.StartPosition;
+            _view.UnitHolder.transform.localPosition = _model.StartUnitHolderLocalPosition;
+            _model.SetCanMove(false);
+            SetActive(true);
         }
 
         public void SetActive(bool isOn)

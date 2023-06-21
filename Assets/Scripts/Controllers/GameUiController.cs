@@ -6,18 +6,18 @@ namespace Controllers
 {
     public class GameUIController : IDisposable
     {
-        public event Action RestartButtonClicked
+        public event Action NextButtonClicked
         {
             add => _view.NextButtonClicked += value;
             remove => _view.NextButtonClicked -= value;
         }
-        
-        public event Action NextButtonClicked
+
+        public event Action RestartButtonClicked
         {
             add => _view.RestartButtonClicked += value;
             remove => _view.RestartButtonClicked += value;
         }
-        
+
         private GameUIView _view;
 
         public GameUIController(GameUIView view)
@@ -26,22 +26,31 @@ namespace Controllers
             _view.Init();
         }
 
+        public void HideAllWindows()
+        {
+            _view.HideAllWindows();
+        }
+
         public void OpenWindow(int windowId)
         {
-           _view.OpenWindow(windowId);
+            _view.OpenWindow(windowId);
         }
 
         public void CloseWindow(int windowId)
         {
             _view.CloseWindow(windowId);
         }
-        
+
+        public void SetLevel(int value)
+        {
+            _view.SetLevel(value + 1);
+        }
 
         public void SetUIActive(bool isOn)
         {
             _view.SetActive(isOn);
         }
-        
+
         public void Dispose()
         {
         }

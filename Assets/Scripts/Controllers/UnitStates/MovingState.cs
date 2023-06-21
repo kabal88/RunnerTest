@@ -67,6 +67,10 @@ namespace Controllers.UnitStates
 
         public override void UpdateLocal(float deltaTime)
         {
+            if (Unit.Model.CurrentNumber < 0)
+            {
+                Unit.HandleState(Unit.DeadState);
+            }
         }
 
         public override void Dispose()

@@ -14,8 +14,12 @@ namespace Controllers.UnitStates
 
         public override void StartState()
         {
-            Unit.View.PlayDeadAnimation();
+            Unit.View.PlayDeadAnimation(OnDead);
             Unit.Model.SetIsAlive(false);
+        }
+
+        private void OnDead()
+        {
             Unit.OnDead();
         }
 

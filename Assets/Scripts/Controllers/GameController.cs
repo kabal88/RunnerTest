@@ -60,13 +60,73 @@ namespace Controllers
             _updateLocalService.RegisterObject(_cameraController);
             _inputListenerService.RegisterObject(_cameraController);
 
-            Start();
-        }
-
-        private void Start()
-        {
             _unitController.HandleState(_unitController.MovingState);
             _cameraController.SetActive(true);
+            _gameUIController.HideAllWindows();
+            _gameUIController.SetLevel(_playerModel.Level);
+        }
+
+        public void UpdateLocal(float deltaTime)
+        {
+            _updateLocalService.UpdateLocal(deltaTime);
+        }
+
+        public void FixedUpdateLocal()
+        {
+            _fixUpdateLocalService.FixedUpdateLocal();
+        }
+        
+        private void InitServices()
+        {
+            _updateLocalService = new UpdateLocalService();
+            ServiceLocator.SetService(_updateLocalService);
+            _fixUpdateLocalService = new FixUpdateLocalService();
+            ServiceLocator.SetService(_fixUpdateLocalService);
+            _spawnService = new SpawnService();
+            ServiceLocator.SetService(_spawnService);
+            _spawnService.Init();
+            _inputListenerService =
+                new InputListenerService(_library.GetInputDescription(_model.InputDescriptionId).Model);
+            ServiceLocator.SetService(_inputListenerService);
+        }
+
+        private void OnLose()
+        {
+            _cameraController.SetActive(false);
+            _gameUIController.OpenWindow(WindowIdentifiersMap.LoseWindow);
+            _gameUIController.RestartButtonClicked += Restart;
+        }
+
+        private void OnWin()
+        {
+            _cameraController.SetActive(false);
+            _playerModel.SetLevel(_playerModel.Level + 1);
+            _gameUIController.SetLevel(_playerModel.Level);
+            _gameUIController.OpenWindow(WindowIdentifiersMap.WinWindow);
+            _gameUIController.NextButtonClicked += NextLevel;
+        }
+
+        private void NextLevel()
+        {
+            PrepareLevel();
+            _gameUIController.NextButtonClicked -= NextLevel;
+        }
+
+
+        private void Restart()
+        {
+            PrepareLevel();
+            _gameUIController.RestartButtonClicked -= Restart;
+        }
+
+        private void PrepareLevel()
+        {
+            _levelGenerator.GenerateLevel(_playerModel.Level);
+            _cameraController.ResetCamera();
+            _unitController.Reset();
+            _unitController.SetNumber(_playerModel.StartNumber);
+            _unitController.HandleState(_unitController.MovingState);
+            _gameUIController.HideAllWindows();
         }
 
         private void OnLevelGenerationFinished()
@@ -84,7 +144,7 @@ namespace Controllers
             _numbersColorController.Init(colorNumbers, _unitController.CurrentNumber);
             _unitController.NumberChanged += _numbersColorController.ColorNumbers;
         }
-
+        
         private UnitController CreateUnit()
         {
             var description = _library.GetUnitDescription(_model.UnitDescriptionId);
@@ -96,48 +156,6 @@ namespace Controllers
             controller.Dead += OnLose;
             controller.CrossFinishLine += OnWin;
             return controller;
-        }
-
-        private void OnLose()
-        {
-            _cameraController.SetActive(false);
-        }
-
-        private void OnWin()
-        {
-            _cameraController.SetActive(false);
-            _playerModel.SetLevel(_playerModel.Level + 1);
-            
-        }
-
-
-        private void Restart()
-        {
-            _levelGenerator.GenerateLevel(_playerModel.Level);
-        }
-
-        public void UpdateLocal(float deltaTime)
-        {
-            _updateLocalService.UpdateLocal(deltaTime);
-        }
-
-        public void FixedUpdateLocal()
-        {
-            _fixUpdateLocalService.FixedUpdateLocal();
-        }
-
-        private void InitServices()
-        {
-            _updateLocalService = new UpdateLocalService();
-            ServiceLocator.SetService(_updateLocalService);
-            _fixUpdateLocalService = new FixUpdateLocalService();
-            ServiceLocator.SetService(_fixUpdateLocalService);
-            _spawnService = new SpawnService();
-            ServiceLocator.SetService(_spawnService);
-            _spawnService.Init();
-            _inputListenerService =
-                new InputListenerService(_library.GetInputDescription(_model.InputDescriptionId).Model);
-            ServiceLocator.SetService(_inputListenerService);
         }
 
         public void Dispose()
