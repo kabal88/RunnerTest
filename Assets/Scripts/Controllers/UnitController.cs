@@ -64,7 +64,6 @@ namespace Controllers
         public void SetActive(bool isOn)
         {
             Model.SetIsActive(isOn);
-            HandleState(isOn ? MovingState : IdleState);
         }
 
         public void UpdateLocal(float deltaTime)
@@ -77,6 +76,7 @@ namespace Controllers
 
         public void SetState(UnitStateBase newState)
         {
+            _currentState?.EndState();
             _currentState = newState;
             _currentState.StartState();
         }

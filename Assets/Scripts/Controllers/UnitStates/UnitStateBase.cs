@@ -17,6 +17,7 @@ namespace Controllers.UnitStates
         public abstract void HandleState(UnitStateBase newState);
         public abstract void StartState();
         public abstract void UpdateLocal(float deltaTime);
+        public abstract void EndState();
         
         public virtual void Dispose()
         {

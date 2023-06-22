@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 311857885098858581}
-  - component: {fileID: 204462899536677381}
+  - component: {fileID: 8415821157015001658}
   - component: {fileID: 2009080666574076257}
   m_Layer: 6
   m_Name: Trampoline
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &204462899536677381
+--- !u!114 &8415821157015001658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5029191753763291897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9290e6496b3d43ae94efbaefde81bd3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9814f5dc1fdaaf44c88d1c54ffd6eb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Ability: {fileID: 11400000, guid: 3c8a682e21318574d8ea3aaae2da6aba, type: 2}
+  _collider: {fileID: 2009080666574076257}
 --- !u!65 &2009080666574076257
 BoxCollider:
   m_ObjectHideFlags: 0

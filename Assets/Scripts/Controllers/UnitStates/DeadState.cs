@@ -27,5 +27,9 @@ namespace Controllers.UnitStates
         {
             
         }
+
+        public override void EndState()
+        {
+        }
     }
 }

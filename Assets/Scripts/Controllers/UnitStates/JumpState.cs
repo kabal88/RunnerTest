@@ -18,11 +18,9 @@ namespace Controllers.UnitStates
                     Unit.SetState(movingState);
                     break;
                 case DeadState deadState:
-                    EndState();
                     Unit.SetState(deadState);
                     break;
                 case IdleState idleState:
-                    EndState();
                     Unit.SetState(idleState);
                     break;
             }
@@ -58,8 +56,8 @@ namespace Controllers.UnitStates
                 interactableObject.Interact(null, Unit.Target);
             }
         }
-        
-        private void EndState()
+
+        public override void EndState()
         {
             Unit.View.CollisionProvider.CollisionEnter -= OnCollisionEnter;
             Unit.View.CollisionProvider.TriggerEnter -= OnTriggerEnter;

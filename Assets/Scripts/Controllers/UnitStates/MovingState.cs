@@ -15,23 +15,18 @@ namespace Controllers.UnitStates
             switch (newState)
             {
                 case DeadState deadState:
-                    EndState();
                     Unit.SetState(deadState);
                     break;
                 case IdleState idleState:
-                    EndState();
                     Unit.SetState(idleState);
                     break;
                 case CrossFinishLineState crossFinishLineState:
-                    EndState();
                     Unit.SetState(crossFinishLineState);
                     break;
                 case JumpState jumpState:
-                    EndState();
                     Unit.SetState(jumpState);
                     break;
                 case FallingState fallingState:
-                    EndState();
                     Unit.SetState(fallingState);
                     break;
             }
@@ -59,7 +54,7 @@ namespace Controllers.UnitStates
             }
         }
 
-        private void EndState()
+        public override void EndState()
         {
             Unit.View.CollisionProvider.CollisionEnter -= OnCollisionEnter;
             Unit.View.CollisionProvider.TriggerEnter -= OnTriggerEnter;

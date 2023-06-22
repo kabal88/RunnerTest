@@ -26,5 +26,9 @@ namespace Controllers.UnitStates
         public override void UpdateLocal(float deltaTime)
         {
         }
+
+        public override void EndState()
+        {
+        }
     }
 }
