@@ -70,5 +70,10 @@ namespace Views
             foreach (var w in _windows) 
                 w.Hide();
         }
+
+        public void SetMoney(int value)
+        {
+            _mainUi.SetMoney(value);
+        }
     }
 }

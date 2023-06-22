@@ -2,6 +2,7 @@
 using Controllers;
 using Identifier;
 using Interfaces;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,8 +14,8 @@ namespace Description
         [SerializeField] private CameraIdentifier _id;
 
         [FormerlySerializedAs("_speed")] [SerializeField] private float _forwardSpeed;
-        [SerializeField] private float _leftBorder;
-        [SerializeField] private float _rightBorder;
+        [HorizontalGroup(LabelWidth = 80)][SerializeField] private float _leftBorder;
+        [HorizontalGroup(LabelWidth = 80)][SerializeField] private float _rightBorder;
         [SerializeField] private float _sideSpeed;
 
         public int Id => _id.Id;

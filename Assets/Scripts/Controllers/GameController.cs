@@ -64,6 +64,7 @@ namespace Controllers
             _cameraController.SetActive(true);
             _gameUIController.HideAllWindows();
             _gameUIController.SetLevel(_playerModel.Level);
+            _gameUIController.SetMoney(_playerModel.Money);
         }
 
         public void UpdateLocal(float deltaTime)
@@ -101,7 +102,9 @@ namespace Controllers
         {
             _cameraController.SetActive(false);
             _playerModel.SetLevel(_playerModel.Level + 1);
+            _playerModel.AddMoney(_unitController.CurrentNumber);
             _gameUIController.SetLevel(_playerModel.Level);
+            _gameUIController.SetMoney(_playerModel.Money);
             _gameUIController.OpenWindow(WindowIdentifiersMap.WinWindow);
             _gameUIController.NextButtonClicked += NextLevel;
         }

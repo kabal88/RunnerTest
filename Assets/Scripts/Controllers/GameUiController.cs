@@ -54,5 +54,10 @@ namespace Controllers
         public void Dispose()
         {
         }
+
+        public void SetMoney(int value)
+        {
+            _view.SetMoney(value);
+        }
     }
 }

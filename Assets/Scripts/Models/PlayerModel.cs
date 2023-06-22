@@ -15,5 +15,10 @@
         {
             Money = score;
         }
+
+        public void AddMoney(int value)
+        {
+            Money += value;
+        }
     }
 }
